@@ -25,6 +25,10 @@ public class Salle {
         this.tarifPlaceNormal = 7;
     }
 
+    public void changerTarif(double newTarif) {
+        this.tarifPlaceNormal = newTarif;
+    }
+
     public void remiseAZero() {
         this.nbPlaceTarifNormal = 0;
         this.nbPlaceTarifReduit = 0;
@@ -34,7 +38,7 @@ public class Salle {
         this.titreFilm = nouveauTitre;
     }
 
-    public String getFilm() {
+    public String getTitreFilm() {
         return this.titreFilm;
     }
 
@@ -45,6 +49,10 @@ public class Salle {
     public double getTarifPrixReduit() {
         // Le prix réduit correspond à 60% du prix normal
         return this.tarifPlaceNormal * 0.6;
+    }
+
+    public int getNumeroSalle() {
+        return this.numeroSalle;
     }
 
     public int nbPlaceVendues() {

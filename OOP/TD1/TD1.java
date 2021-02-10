@@ -11,5 +11,8 @@ public class TD1 {
         System.out.println(Descartes.vendrePlace(4, false));
         System.out.println(Descartes);
         System.out.println(Descartes.chiffreAffaireVentes());
+
+        Cinema UGC = new Cinema(5);
+        System.out.println(UGC);
     }
 }
