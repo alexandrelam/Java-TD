@@ -5,6 +5,9 @@ public class Cinema {
 
     public Cinema(int nbSalles) {
         this.sallesArr = new Salle[nbSalles];
+        for (int i = 0; i < nbSalles; i++) {
+            sallesArr[i] = new Salle(i);
+        }
     }
 
     public double ventesGlobales() {
