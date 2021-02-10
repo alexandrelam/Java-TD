@@ -17,5 +17,6 @@ public class TD1 {
         UGC.changerFilmSalle(1, "github.com/alexandrelam", 8.8);
         UGC.changerFilmSalle(2, "je suis un lion pas un mouton je suis comme baba", 11);
         System.out.println(UGC);
+        System.out.println(UGC.titreFilmDispoPourGroupe(4));
     }
 }
