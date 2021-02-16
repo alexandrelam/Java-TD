@@ -13,11 +13,17 @@ public class ImageGeneree extends JComponent {
     int width;
     int height;
 
+    private int level;
+
     RenderedImage final_img;
 
+    public void setLevel(int val) {
+        this.level = val;
+    }
+
     public ImageGeneree() {
-        width = 650;
-        height = 600;
+        width = 1200;
+        height = 800;
     }
 
     public ImageGeneree(int width, int height) {
@@ -35,7 +41,6 @@ public class ImageGeneree extends JComponent {
         } else {
             Expr e;
             int rdn_int = graine.nextInt(4);
-            System.out.print(rdn_int + " ");
             switch (rdn_int) {
                 case 0:
                     e = new Sin(random_expr(level - 1));
@@ -62,21 +67,18 @@ public class ImageGeneree extends JComponent {
     }
 
     public double get_color(double eval) {
-        if (eval >= 1) {
-            System.out.println(eval);
-        }
         return (255 / 2) + ((255 / 2) * eval);
     }
 
-    public void contruitImage(int width, int height) {
+    public void contruitImage(int width, int height, int red, int green, int blue) {
         ImageGeneree im = new ImageGeneree();
-        Expr monExp = im.random_expr(6);
+        Expr monExp = im.random_expr(8);
         BufferedImage buff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int r = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height)));
-                int g = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height)));
-                int b = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height)));
+                int r = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * red / 255;
+                int g = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * green / 255;
+                int b = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * blue / 255;
                 buff.setRGB(i, j, (new Color(r, g, b)).getRGB());
             }
             this.final_img = buff;
@@ -87,12 +89,4 @@ public class ImageGeneree extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
         g2.drawRenderedImage(final_img, null);
     }
-
-    public static void main(String[] args) {
-        ImageGeneree im = new ImageGeneree();
-        Expr monExp = im.random_expr(2);
-        System.out.println(monExp);
-        System.out.println(monExp.eval(3, 5));
-    }
-
 }
