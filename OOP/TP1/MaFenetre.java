@@ -78,6 +78,11 @@ public class MaFenetre extends JFrame {
         p2.add(generer);
 
         Button sauvegarder = new Button("Sauvegarder");
+        sauvegarder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                im.save();
+            }
+        });
         p2.add(sauvegarder);
 
         Button quit = new Button("quit");

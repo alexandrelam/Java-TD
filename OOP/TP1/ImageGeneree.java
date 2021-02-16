@@ -3,6 +3,11 @@ import java.util.Random;
 import javax.swing.JComponent;
 import java.awt.image.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import javax.imageio.ImageIO;
 
 public class ImageGeneree extends JComponent {
     Random graine = new Random();
@@ -88,5 +93,18 @@ public class ImageGeneree extends JComponent {
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.drawRenderedImage(final_img, null);
+    }
+
+    public void save() {
+        try {
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy-HHmmss");
+            String filename = formatter.format(date) + ".jpg";
+            File f = new File(filename);
+            ImageIO.write(final_img, "jpg", f);
+            System.out.println("Saved !");
+        } catch (IOException e) {
+            System.out.println("Can't save file");
+        }
     }
 }
