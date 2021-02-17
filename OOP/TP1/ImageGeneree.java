@@ -18,8 +18,6 @@ public class ImageGeneree extends JComponent {
     int width;
     int height;
 
-    private int level;
-
     RenderedImage final_img;
 
     public void setLevel(int val) {
@@ -27,8 +25,8 @@ public class ImageGeneree extends JComponent {
     }
 
     public ImageGeneree() {
-        width = 1200;
-        height = 800;
+        this.width = 1920;
+        this.height = 1080;
     }
 
     public ImageGeneree(int width, int height) {
