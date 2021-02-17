@@ -6,14 +6,13 @@ import java.awt.event.*;
 public class MaFenetre extends JFrame {
     static final int WIDTH = 1100;
     static final int HEIGHT = 800;
-    static final int RGB_MIN = 0;
-    static final int RGB_MAX = 255;
-    static final int RGB_INIT = 100;
+    static final int RGB_MIN = 1;
+    static final int RGB_MAX = 10;
+    static final int RGB_INIT = 4;
 
     private int red_value = RGB_INIT;
     private int green_value = RGB_INIT;
     private int blue_value = RGB_INIT;
-    private int level_value = 5;
 
     MaFenetre() {
         super("Mon magnifique TP");
@@ -52,25 +51,11 @@ public class MaFenetre extends JFrame {
         });
         p1.add(blue);
 
-        p1.add(new JLabel("level"));
-        JSlider level = new JSlider(JSlider.HORIZONTAL, 1, 10, 4);
-        level.setMajorTickSpacing(1);
-        level.setPaintTicks(true);
-        level.setPaintLabels(true);
-        level.setLabelTable(level.createStandardLabels(1));
-        level.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                level_value = level.getValue();
-            }
-        });
-        p1.add(level);
-
         c.add(im);
 
         Button generer = new Button("Generer");
         generer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                im.setLevel(level_value);
                 im.contruitImage(WIDTH, HEIGHT, red_value, green_value, blue_value);
                 repaint();
             }
@@ -101,11 +86,10 @@ public class MaFenetre extends JFrame {
 
     public JSlider RGB_Slider() {
         JSlider slider = new JSlider(JSlider.HORIZONTAL, RGB_MIN, RGB_MAX, RGB_INIT);
-        slider.setMajorTickSpacing(50);
-        slider.setMinorTickSpacing(10);
+        slider.setMajorTickSpacing(1);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-        slider.setLabelTable(slider.createStandardLabels(255));
+        slider.setLabelTable(slider.createStandardLabels(1));
         return slider;
     }
 

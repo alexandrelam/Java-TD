@@ -77,13 +77,15 @@ public class ImageGeneree extends JComponent {
 
     public void contruitImage(int width, int height, int red, int green, int blue) {
         ImageGeneree im = new ImageGeneree();
-        Expr monExp = im.random_expr(8);
+        Expr red_level = im.random_expr(red);
+        Expr green_level = im.random_expr(green);
+        Expr blue_level = im.random_expr(blue);
         BufferedImage buff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int r = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * red / 255;
-                int g = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * green / 255;
-                int b = (int) im.get_color(monExp.eval(im.scale(i, width), im.scale(j, height))) * blue / 255;
+                int r = (int) im.get_color(red_level.eval(im.scale(i, width), im.scale(j, height)));
+                int g = (int) im.get_color(green_level.eval(im.scale(i, width), im.scale(j, height)));
+                int b = (int) im.get_color(blue_level.eval(im.scale(i, width), im.scale(j, height)));
                 buff.setRGB(i, j, (new Color(r, g, b)).getRGB());
             }
             this.final_img = buff;
